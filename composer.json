@@ -1,0 +1,47 @@
+{
+    "name": "drinks-it/sf-consumer-logger-bundle",
+    "description": "Formatter logs for consumers start/run/stop events",
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/config": "^5.4 || ^6.1 || ^6.2 || ^6.3 || ^6.4",
+        "symfony/dependency-injection": "^5.4 || ^6.1 || ^6.2 || ^6.3 || ^6.4",
+        "symfony/messenger": "^5.4 || ^6.1 || ^6.2 || ^6.3 || ^6.4"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.19 || ^3.0",
+        "symfony/phpunit-bridge": "^5.0 || ^6.0",
+        "symfony/http-kernel": "^5.4 || ^6.1 || ^6.2 || ^6.3 || ^6.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DrinksIt\\SfConsumerLoggerBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "maxim.gubar",
+            "email": "max@drink.ch"
+        },
+        {
+            "name": "olegtytarenko",
+            "email": "oleg@drinks.group"
+        }
+    ],
+    "scripts": {
+        "test-unit": [
+            "@putenv XDEBUG_MODE=coverage",
+            "./vendor/bin/simple-phpunit --configuration phpunit.xml.dist --coverage-text"
+        ],
+        "php-cs": [
+            "./vendor/bin/php-cs-fixer fix --diff --dry-run --config=.php-cs-fixer.dist.php --using-cache no"
+        ],
+        "php-fix-files": [
+            "find src -name \"*.php\" -exec ./vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix  {} \\;",
+            "find tests -name \"*.php\" -exec ./vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix  {} \\;"
+        ]
+    },
+    "archive": {
+        "exclude": ["tests/", ".run/", ".github/", "phpunit.xml.dist"]
+    }
+}

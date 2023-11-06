@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="DrinksIt\SfConsumerLoggerBundle\Listeners\WorkerConsumerListener" autowire="true">
+            <tag name="kernel.event_listener" event="Symfony\Component\Messenger\Event\WorkerStartedEvent" method="onStartedEvent"/>
+            <tag name="kernel.event_listener" event="Symfony\Component\Messenger\Event\WorkerRunningEvent" method="onRunningEvent"/>
+            <tag name="kernel.event_listener" event="Symfony\Component\Messenger\Event\WorkerStoppedEvent" method="onStoppedEvent"/>
+            <bind key="$logLevelStart">%sf_consumer_logger.log_start_level%</bind>
+            <bind key="$logLevelRunning">%sf_consumer_logger.log_running_level%</bind>
+            <bind key="$logLevelStopped">%sf_consumer_logger.log_stopped_level%</bind>
+            <bind key="$logLevelStartMessage">%sf_consumer_logger.log_start_message%</bind>
+            <bind key="$logLevelRunningMessage">%sf_consumer_logger.log_running_message%</bind>
+            <bind key="$logLevelStoppedMessage">%sf_consumer_logger.log_stopped_message%</bind>
+        </service>
+    </services>
+
+</container>
