@@ -23,7 +23,7 @@ class WorkerConsumerListenerTest extends TestCase
         $logger = $this->createMock(LoggerInterface::class);
 
         $logger->expects($this->once())->method('log')->with('info', 'Consumer running', [
-            'consumer_name' => 'test',
+            'transport_names' => ['test'],
         ]);
 
         $worker = $this->createMock(Worker::class);
@@ -46,7 +46,7 @@ class WorkerConsumerListenerTest extends TestCase
         $logger = $this->createMock(LoggerInterface::class);
 
         $logger->expects($this->once())->method('log')->with('info', 'Consumer started', [
-            'consumer_name' => 'test',
+            'transport_names' => ['test'],
         ]);
 
         $worker = $this->createMock(Worker::class);
@@ -69,7 +69,7 @@ class WorkerConsumerListenerTest extends TestCase
         $logger = $this->createMock(LoggerInterface::class);
 
         $logger->expects($this->once())->method('log')->with('info', 'Consumer stopped', [
-            'consumer_name' => 'test',
+            'transport_names' => ['test'],
         ]);
 
         $worker = $this->createMock(Worker::class);

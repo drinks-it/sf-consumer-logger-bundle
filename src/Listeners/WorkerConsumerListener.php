@@ -33,14 +33,9 @@ class WorkerConsumerListener
             return;
         }
 
-        $worker = $workerRunningEvent->getWorker();
-        $metadata = $worker->getMetadata();
-
-        foreach ($metadata->getTransportNames() as $transportName) {
-            $this->consumerLogger->log($this->logLevelRunning, $this->logLevelRunningMessage, [
-                'consumer_name' => $transportName,
-            ]);
-        }
+        $this->consumerLogger->log($this->logLevelRunning, $this->logLevelRunningMessage, [
+            'transport_names' => $workerRunningEvent->getWorker()->getMetadata()->getTransportNames(),
+        ]);
     }
 
     public function onStartedEvent(WorkerStartedEvent $workerStartedEvent): void
@@ -49,14 +44,9 @@ class WorkerConsumerListener
             return;
         }
 
-        $worker = $workerStartedEvent->getWorker();
-        $metadata = $worker->getMetadata();
-
-        foreach ($metadata->getTransportNames() as $transportName) {
-            $this->consumerLogger->log($this->logLevelStart, $this->logLevelStartMessage, [
-                'consumer_name' => $transportName,
-            ]);
-        }
+        $this->consumerLogger->log($this->logLevelStart, $this->logLevelStartMessage, [
+            'transport_names' => $workerStartedEvent->getWorker()->getMetadata()->getTransportNames(),
+        ]);
     }
 
     public function onStoppedEvent(WorkerStoppedEvent $workerStoppedEvent): void
@@ -65,13 +55,8 @@ class WorkerConsumerListener
             return;
         }
 
-        $worker = $workerStoppedEvent->getWorker();
-        $metadata = $worker->getMetadata();
-
-        foreach ($metadata->getTransportNames() as $transportName) {
-            $this->consumerLogger->log($this->logLevelStopped, $this->logLevelStoppedMessage, [
-                'consumer_name' => $transportName,
-            ]);
-        }
+        $this->consumerLogger->log($this->logLevelStopped, $this->logLevelStoppedMessage, [
+            'transport_names' => $workerStoppedEvent->getWorker()->getMetadata()->getTransportNames(),
+        ]);
     }
 }
